@@ -1,0 +1,33 @@
+﻿@inherits ListBlobsBase
+@page "/listblobs"
+
+<h1>Blobs list</h1>
+
+@if (blobs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Uri</th>
+                <th>Container</th>
+                <th>Name</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blob in blobs)
+            {
+                <tr>
+                    <td>@blob.Uri</td>
+                    <td>@blob.Container</td>
+                    <td>@blob.Name</td>
+                    <td><DownloadComponent FileUrl="@blob.Uri.ToString()" UserId="userid"></DownloadComponent></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
